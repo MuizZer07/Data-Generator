@@ -18,12 +18,21 @@ class Data_Generator():
             4: "Salesman",
             5: "Farmer",
             6: "Minister",
-            7: "Rickshaw Puller",
+            7: "Athlete",
             8: "Postman",
             9: "Peon",
             10: "Government Officer",
             11: "Army Officer",
-            12: "Artist"
+            12: "Artist",
+            13: "Doctor",
+            14: "Politician",
+            15: "Chef",
+            16: "Judge",
+            17: "Journalist",
+            18: "Social Worker",
+            19: "Free lancer",
+            20: "Media Worker",
+            21: "Student"
         }
 
         self.email = {
@@ -164,7 +173,7 @@ class Data_Generator():
         self.new_generated_sex.append(gender)
         self.new_generated_religion.append(religion)
         self.new_generated_marital_status.append(self.marital_status[random.randint(1, 4)])
-        self.new_generated_profession.append(self.profession[random.randint(1, 12)])
+        self.new_generated_profession.append(self.profession[random.randint(1, 21)])
         self.new_generated_DOB.append(self.generate_DOB())
         self.new_generated_emails.append(firstname.lower() + "." + lastname.lower() + self.email[random.randint(1, 3)])
         self.new_generated_mobile_no.append(self.generate_phone_no())
@@ -225,6 +234,8 @@ class Data_Generator():
         str1 = str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)) + \
                str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)) + \
                str(random.randint(0, 9)) + str(random.randint(0, 9))
+               
+        return self.mobile_no[random.randint(1, 5)] + str1
     
     def generate_NID(self):
         str1 = str(random.randint(1, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)) + \
