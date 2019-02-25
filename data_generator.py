@@ -1,4 +1,5 @@
 import random
+import string
 
 
 class Data_Generator():
@@ -12,29 +13,59 @@ class Data_Generator():
         }
 
         self.profession = {
-            1: "Service Holder",
-            2: "Businessman",
-            3: "Teacher",
-            4: "Salesman",
-            5: "Farmer",
-            6: "Minister",
-            7: "Athlete",
-            8: "Postman",
-            9: "Peon",
-            10: "Government Officer",
-            11: "Army Officer",
+            1: "Farmer",
+            2: "Postman",
+            3: "Peon",
+            4: "Chef",
+            5: "Salesman",
+            6: "Social Worker",
+            7: "Free lancer",
+            8: "Media Worker",
+            9: "Minister",   
+            10: "Politician",
+            11: "Government Officer",
             12: "Artist",
-            13: "Doctor",
-            14: "Politician",
-            15: "Chef",
+            13: "Entreprenuer",
+            14: "Army Officer",
+            15: "Athlete",
             16: "Judge",
             17: "Journalist",
-            18: "Social Worker",
-            19: "Free lancer",
-            20: "Media Worker",
-            21: "Student"
+            18: "Businessman",
+            19: "Teacher",
+            20: "Service Holder",
+            21: "Student",
         }
-
+        
+        self.not_ssc = list(self.profession.values())[0:4]
+        self.not_hsc = list(self.profession.values())[0:5]
+        self.not_ug = list(self.profession.values())[0:8]
+        self.not_grad = list(self.profession.values())[0:10]
+        self.not_phd = list(self.profession.values())[0:16]
+        
+        self.salary = {
+            "Service Holder" : [40000, 50000],
+            "Businessman": [80000, 200000],
+            "Teacher": [15000, 30000],
+            "Salesman": [10000, 25000],
+            "Farmer": [5000, 10000],
+            "Minister": [60000, 80000],
+            "Athlete": [10000, 50000],
+            "Postman": [5000, 9000],
+            "Peon": [5000, 9000],
+            "Government Officer": [45000, 60000],
+            "Army Officer": [45000, 60000],
+            "Artist": [10000, 50000],
+            "Entreprenuer": [80000, 500000],
+            "Politician": [10000, 50000],
+            "Chef": [15000, 30000],
+            "Judge": [10000, 50000],
+            "Journalist": [15000, 30000],
+            "Social Worker": [15000, 30000],
+            "Free lancer": [15000, 30000],
+            "Media Worker": [15000, 30000],
+            "Student": [0, 0]
+        }
+        
         self.email = {
             1: '@gmail.com',
             2: '@yahoo.com',
@@ -93,129 +124,613 @@ class Data_Generator():
             'Sylhet' : ['Jahidpur', 'Sujaul', 'Balaganj', 'Jotyintapur', 'Sagarnal '],
         }
         
-        self.default_female_names = ['Afsana Ara Hoque', 'Khadija begum', 'Maimuna Haque', \
-                                     'Nafisa Kabir', 'Rehnuma Haque']
-        self.default_male_names = ['Ahmed Kamal', 'Kamal Ahmed', 'Kamal Haque', 'Jamal Ahmed', 'Jamal Haque']
+        self.school_college = ['Adamjee Cantonment Public', 'Rajuk Uttara', 'Cambrian', \
+                       'Bogra Zilla', 'Chittagong Cantonment', \
+                       'St. Joseph', 'St. Gragery', 'Comilla Cantonment', 'Shaheen',\
+                       'Ranpur Zilla', 'Bangladesh Navy', 'City', 'Dhaka']
         
-        self.new_generated_names = []
+        self.university = ['DU', 'RU', 'CU', 'KU', 'NYU', 'Texas Tech',\
+                           'BUET', 'CUET', 'RUET', 'KUET'\
+                           'NSU', 'IUB', 'AIUB', 'MIST', \
+                           'Harvard', 'MIT', 'Oxford', 'Caltech']
+        
+        self.default_female_names = {
+            'first' : ['Afsana', 'Khadija', 'Maimuna', 'Nafisa', 'Rehnuma'],
+            'middle': ['Ara', ' ', 'Binte', 'Umme'],
+            'last': ['Hoque', 'begum', 'Haque', 'Kabir']
+            
+        }
+        
+        self.default_male_names = {
+            'first' : ['Ahmed', 'Kamal', 'Jamal'],
+            'middle': [' ', 'Ibne'],
+            'last': ['Haque', 'Sarker']
+            
+        }
+               
+        self.new_generated_first_names = []
+        self.new_generated_middle_names = []
+        self.new_generated_last_names = []
+        
+        self.new_generated_fathers_first_name = []
+        self.new_generated_fathers_middle_name = []
+        self.new_generated_fathers_last_name = []
+        
+        self.new_generated_mothers_first_name = []
+        self.new_generated_mothers_middle_name = []
+        self.new_generated_mothers_last_name = []
+        
         self.new_generated_sex = []
         self.new_generated_religion = []
         self.new_generated_marital_status = []
         self.new_generated_profession = []
         self.new_generated_DOB = []
+        
         self.new_generated_emails = []
         self.new_generated_mobile_no = []
-        self.new_generated_permanent_address = []
-        self.new_generated_present_address = []
-        self.new_generated_fathers_name = []
-        self.new_generated_mothers_name = []
+        
+        self.new_generated_height = []
+        self.new_generated_weight = []
+        
+        self.new_generated_salary = []
+        self.new_generated_tin_no = []
+        self.new_generated_income_tax = []
+        self.new_generated_assets = []
+        
+        self.new_generated_school = []
+        self.new_generated_SSC_gpa = []
+        self.new_generated_college = []
+        self.new_generated_HSC_gpa = []
+        self.new_generated_ug = []
+        self.new_generated_ug_cgpa = []
+        self.new_generated_grad = []
+        self.new_generated_grad_cgpa = []
+        self.new_generated_phd = []
+
+        self.new_generated_permanent_addr_house_no = []
+        self.new_generated_permanent_addr_street_no = []
+        self.new_generated_permanent_addr_word_no = []
+        self.new_generated_permanent_addr_village = []
+        self.new_generated_permanent_addr_thana = []
+        self.new_generated_permanent_addr_city = []
+        self.new_generated_permanent_addr_district = []
+        self.new_generated_permanent_addr_division = []
+        
+        self.new_generated_present_addr_house_no = []
+        self.new_generated_present_addr_street_no = []
+        self.new_generated_present_addr_word_no = []
+        self.new_generated_present_addr_village = []
+        self.new_generated_present_addr_thana = []
+        self.new_generated_present_addr_city = []
+        self.new_generated_present_addr_district = []
+        self.new_generated_present_addr_division = []
+        
+        
         self.new_generated_place_of_birth = []
         self.new_generated_NID = []
+        self.new_generated_passport_no = []
+        
+        self.new_generated_ec_firstname = []
+        self.new_generated_ec_middlename = []
+        self.new_generated_ec_lastname = []
+        self.new_generated_ec_mobile = []
+        self.new_generated_ec_email = []
+        self.new_generated_ec_permanent_addr_house_no = []
+        self.new_generated_ec_permanent_addr_street_no = []
+        self.new_generated_ec_permanent_addr_word_no = []
+        self.new_generated_ec_permanent_addr_village = []
+        self.new_generated_ec_permanent_addr_thana = []
+        self.new_generated_ec_permanent_addr_city = []
+        self.new_generated_ec_permanent_addr_district = []
+        self.new_generated_ec_permanent_addr_division = []
+        self.new_generated_ec_present_addr_house_no = []
+        self.new_generated_ec_present_addr_street_no = []
+        self.new_generated_ec_present_addr_word_no = []
+        self.new_generated_ec_present_addr_village = []
+        self.new_generated_ec_present_addr_thana = []
+        self.new_generated_ec_present_addr_city = []
+        self.new_generated_ec_present_addr_district = []
+        self.new_generated_ec_present_addr_division = []
         
         for i in range(5):
-            self.new_generated_names.append("Ahmed Reza Haque")
+            self.new_generated_first_names.append("Ahmed")
+            self.new_generated_middle_names.append("Reza")
+            self.new_generated_last_names.append("Haque")
             self.new_generated_NID.append(self.generate_NID())
+            self.new_generated_passport_no.append(self.generate_passport_no())
             self.new_generated_sex.append("male")
             self.new_generated_religion.append("muslim")
             self.new_generated_marital_status.append("Single")
-            self.new_generated_profession.append("Student")
-            self.new_generated_DOB.append("01/01/1990")
-            self.new_generated_emails.append("reza.ahmed@gmail.com")
+            
+            dob, age = self.generate_DOB()
+            
+            if age <= 22:
+                prof = "Student"
+            else:
+                prof = self.profession[random.randint(1, 21)]
+            
+            self.new_generated_profession.append(prof)
+            
+            self.new_generated_DOB.append(dob)
+            
+            self.new_generated_height.append(str(random.randint(4, 6)) + "ft. " + str(random.randint(1, 11)) + " inches")
+            self.new_generated_weight.append(str(random.randint(80, 120)) + " lbs")
+            
+            salary= self.generate_salary(prof)
+            self.new_generated_salary.append(salary)
+            self.new_generated_tin_no.append(self.generate_tin_no(salary))
+            
+            school, result = self.generate_SSC(prof, age)
+            self.new_generated_school.append(school)
+            self.new_generated_SSC_gpa.append(result)
+            
+            college, result1 = self.generate_HSC(prof, age)
+            self.new_generated_college.append(college)
+            self.new_generated_HSC_gpa.append(result1)
+            
+            
+            university, result2 = self.generate_UG(prof, age)
+            self.new_generated_ug.append(university)
+            self.new_generated_ug_cgpa.append(result2)
+           
+            university1, result3 = self.generate_Grad(prof, age)
+            self.new_generated_grad.append(university1)
+            self.new_generated_grad_cgpa.append(result3)
+            
+            result4 = self.generate_PhD(prof, age)
+            self.new_generated_phd.append(result4)
+            
+            self.new_generated_assets.append(self.generate_assets(salary))
+            
+            self.new_generated_income_tax.append(self.generate_income_tax(salary))
+            self.new_generated_emails.append(self.generate_email("Ahmed", "Reza"))
             self.new_generated_mobile_no.append(self.generate_phone_no())
-            self.new_generated_permanent_address.append(self.generate_permanent_address())
-            self.new_generated_present_address.append(self.generate_present_address())
-            self.new_generated_fathers_name.append(self.default_male_names[i])
-            self.new_generated_mothers_name.append(self.default_female_names[i])
+            
+            self.generate_permanent_present_address()
+            
+            self.new_generated_fathers_first_name.append(random.choice(self.default_male_names['first']))
+            self.new_generated_fathers_middle_name.append(random.choice(self.default_male_names['middle']))
+            self.new_generated_fathers_last_name.append(random.choice(self.default_male_names['last']))
+            self.new_generated_mothers_first_name.append(random.choice(self.default_female_names['first']))
+            self.new_generated_mothers_middle_name.append(random.choice(self.default_female_names['middle']))
+            self.new_generated_mothers_last_name.append(random.choice(self.default_female_names['last']))
             self.new_generated_place_of_birth.append(random.choice(self.districts[random.randint(1, 4)]))
-
+            
+            ec_fname = random.choice(self.default_male_names['first'])
+            ec_lname = random.choice(self.default_male_names['last'])
+            self.new_generated_ec_firstname.append(ec_fname)
+            self.new_generated_ec_middlename.append(random.choice(self.default_male_names['middle']))
+            self.new_generated_ec_lastname.append(ec_lname)
+            self.new_generated_ec_mobile.append(self.generate_phone_no())
+            self.new_generated_ec_email.append(self.generate_email(ec_fname, ec_lname))
 
     def get_data(self):
-        Data = {'Name': self.new_generated_names,
+        Data = {'First name': self.new_generated_first_names,
+                'Middle name': self.new_generated_middle_names,
+                'Last name': self.new_generated_last_names,
                 'NID': self.new_generated_NID,
-                'Fathers Name': self.new_generated_fathers_name,
-                'Mothers Name': self.new_generated_mothers_name,
+                'Fathers First Name': self.new_generated_fathers_first_name,
+                'Fathers Middle Name': self.new_generated_fathers_middle_name,
+                'Fathers Last Name': self.new_generated_fathers_last_name,
+                'Mothers First Name': self.new_generated_mothers_first_name,
+                'Mothers Middle Name': self.new_generated_mothers_middle_name,
+                'Mothers Last Name': self.new_generated_mothers_last_name,
                 'Sex': self.new_generated_sex,
                 'Religion': self.new_generated_religion,
                 'Marital Status': self.new_generated_marital_status,
+                'Height': self.new_generated_height,
+                'Weight': self.new_generated_weight,
                 'Profession': self.new_generated_profession,
+                'Income': self.new_generated_salary,
+                'Income Tax' : self.new_generated_income_tax,
+                'TIN No': self.new_generated_tin_no,
+                'Assets': self.new_generated_assets,
                 'Date of Birth': self.new_generated_DOB,
+                'Passport No': self.new_generated_passport_no,
                 'Email Address': self.new_generated_emails,
-                'Mobile No. (+880)': self.new_generated_mobile_no,
-                'Permanent Address': self.new_generated_permanent_address,
-                'Present Address': self.new_generated_present_address,
+                'Mobile No': self.new_generated_mobile_no,
+                'Prsnt_addr_house_no': self.new_generated_present_addr_house_no,
+                'Prsnt_addr_street_no': self.new_generated_present_addr_street_no,
+                'Prsnt_addr_word_no': self.new_generated_present_addr_word_no,
+                'Prsnt_addr_village': self.new_generated_present_addr_village,
+                'Prsnt_addr_thana': self.new_generated_present_addr_thana,
+                'Prsnt_addr_city': self.new_generated_present_addr_city,
+                'Prsnt_addr_district': self.new_generated_present_addr_district,
+                'Prsnt_addr_division': self.new_generated_present_addr_division,                
+                'Prmntn_addr_house_no': self.new_generated_permanent_addr_house_no,
+                'Prmntn_addr_street_no': self.new_generated_permanent_addr_street_no,
+                'Prmntn_addr_word_no': self.new_generated_permanent_addr_word_no,
+                'Prmntn_addr_village': self.new_generated_permanent_addr_village,
+                'Prmntn_addr_thana': self.new_generated_permanent_addr_thana,
+                'Prmntn_addr_city': self.new_generated_permanent_addr_city,
+                'Prmntn_addr_district': self.new_generated_permanent_addr_district,
+                'Prmntn_addr_division': self.new_generated_permanent_addr_division,
+                'SSC Passed From': self.new_generated_school,
+                'SSC Result': self.new_generated_SSC_gpa,
+                'HSC Passed From': self.new_generated_college,
+                'HSC Result': self.new_generated_HSC_gpa,
+                'Graduated From': self.new_generated_ug,
+                'Undergrad Result': self.new_generated_ug_cgpa,
+                'Post Graduated From': self.new_generated_grad,
+                'Postgrad Result': self.new_generated_grad_cgpa,
+                'Doctorate From': self.new_generated_phd,
                 'Place of Birth': self.new_generated_place_of_birth,
+                'EC First Name': self.new_generated_ec_firstname,
+                'EC Middle Name': self.new_generated_ec_middlename,
+                'EC Last Name': self.new_generated_ec_lastname,
+                'EC_Prsnt_addr_house_no': self.new_generated_ec_present_addr_house_no,
+                'EC_Prsnt_addr_street_no': self.new_generated_ec_present_addr_street_no,
+                'EC_Prsnt_addr_word_no': self.new_generated_ec_present_addr_word_no,
+                'EC_Prsnt_addr_village': self.new_generated_ec_present_addr_village,
+                'EC_Prsnt_addr_thana': self.new_generated_ec_present_addr_thana,
+                'EC_Prsnt_addr_city': self.new_generated_ec_present_addr_city,
+                'EC_Prsnt_addr_district': self.new_generated_ec_present_addr_district,
+                'EC_Prsnt_addr_division': self.new_generated_ec_present_addr_division,                
+                'EC_Prmntn_addr_house_no': self.new_generated_ec_permanent_addr_house_no,
+                'EC_Prmntn_addr_street_no': self.new_generated_ec_permanent_addr_street_no,
+                'EC_Prmntn_addr_word_no': self.new_generated_ec_permanent_addr_word_no,
+                'EC_Prmntn_addr_village': self.new_generated_ec_permanent_addr_village,
+                'EC_Prmntn_addr_thana': self.new_generated_ec_permanent_addr_thana,
+                'EC_Prmntn_addr_city': self.new_generated_ec_permanent_addr_city,
+                'EC_Prmntn_addr_district': self.new_generated_ec_permanent_addr_district,
+                'EC_Prmntn_addr_division': self.new_generated_ec_permanent_addr_division,
+                'EC Mobile No': self.new_generated_ec_mobile,
+                'EC Email Address': self.new_generated_ec_email,
                 }
-        columns = ['Name', 'NID', 'Fathers Name', 'Mothers Name', 'Sex', 'Religion', 'Marital Status', 'Profession', 'Date of Birth', \
-                   'Email Address', 'Mobile No. (+880)', 'Permanent Address', 'Present Address', 'Place of Birth']
+        
+        columns = ['First name', 'Middle name', 'Last name', 'NID', 'Fathers First Name', \
+                   'Fathers Middle Name', 'Fathers Last Name', 'Mothers First Name', \
+                   'Mothers Middle Name', 'Mothers Last Name', 'Sex', 'Religion', \
+                   'Marital Status', 'Height', 'Weight', 'Profession', 'Income', \
+                   'Income Tax', 'TIN No', 'Assets', 'Date of Birth', 'Passport No', 'Email Address',\
+                   'Mobile No', 'Prsnt_addr_house_no', 'Prsnt_addr_street_no', 'Prsnt_addr_word_no', \
+                   'Prsnt_addr_village', 'Prsnt_addr_thana', 'Prsnt_addr_city', 'Prsnt_addr_district', \
+                   'Prsnt_addr_division', 'Prmntn_addr_house_no', 'Prmntn_addr_street_no', \
+                   'Prmntn_addr_word_no', 'Prmntn_addr_village', 'Prmntn_addr_thana', \
+                   'Prmntn_addr_city', 'Prmntn_addr_district', 'Prmntn_addr_division', 'SSC Passed From',\
+                   'SSC Result', 'HSC Passed From', 'HSC Result',  'Graduated From',\
+                   'Undergrad Result', 'Post Graduated From', 'Postgrad Result',\
+                   'Doctorate From',  'Place of Birth', 'EC First Name', 'EC Middle Name',\
+                   'EC Last Name', 'EC_Prsnt_addr_house_no', 'EC_Prsnt_addr_street_no', \
+                   'EC_Prsnt_addr_word_no', 'EC_Prsnt_addr_village', 'EC_Prsnt_addr_thana',\
+                   'EC_Prsnt_addr_city', 'Prsnt_addr_district','EC_Prsnt_addr_division', \
+                    'EC_Prmntn_addr_house_no', 'EC_Prmntn_addr_street_no', \
+                   'EC_Prmntn_addr_word_no', 'EC_Prmntn_addr_village', 'EC_Prmntn_addr_thana', \
+                   'EC_Prmntn_addr_city', 'EC_Prmntn_addr_district', 'EC_Prmntn_addr_division', \
+                   'EC Mobile No', 'EC Email Address']
 
         return Data, columns
 
     def generate_profile(self, first_names, middle_names, last_names, gender, religion):
-        num = random.randint(5, 15)
         for firstname in first_names:
             for lastname in last_names:
                 if middle_names != None:
                     for middlename in middle_names:
-                        for i in range(num):
+                        for i in range(7):
                             self.generate_single_profile(first_names, last_names, firstname, middlename, lastname, gender, religion)
 #                        
                 else:
-                    for i in range(num):
+                    for i in range(7):
                         self.generate_single_profile(first_names, last_names, firstname, None, lastname, gender, religion)
              
     def generate_single_profile(self, first_names, last_names, firstname, middlename, lastname, gender, religion):
-        if middlename is None:
-            self.new_generated_names.append(firstname + " " + lastname)
-        else:
-            self.new_generated_names.append(firstname + " " + middlename + " " + lastname)
-                 
+        self.new_generated_first_names.append(firstname)
+        self.new_generated_middle_names.append(middlename)
+        self.new_generated_last_names.append(lastname)       
         self.new_generated_NID.append(self.generate_NID())
+        self.new_generated_passport_no.append(self.generate_passport_no())
         self.new_generated_sex.append(gender)
         self.new_generated_religion.append(religion)
         self.new_generated_marital_status.append(self.marital_status[random.randint(1, 4)])
-        self.new_generated_profession.append(self.profession[random.randint(1, 21)])
-        self.new_generated_DOB.append(self.generate_DOB())
-        self.new_generated_emails.append(firstname.lower() + "." + lastname.lower() + self.email[random.randint(1, 3)])
-        self.new_generated_mobile_no.append(self.generate_phone_no())
-        self.new_generated_permanent_address.append(self.generate_permanent_address())
-        self.new_generated_present_address.append(self.generate_present_address())
-        self.new_generated_fathers_name.append(self.get_fathers_name(first_names, "", lastname, gender))
-        self.new_generated_mothers_name.append(self.get_mothers_name(first_names, last_names, gender))
-        self.new_generated_place_of_birth.append(random.choice(self.districts[random.randint(1, 4)]))
         
+        dob, age = self.generate_DOB()
+        if age <= 22:
+                prof = "Student"
+        else:
+                prof = self.profession[random.randint(1, 21)]
+                
+        self.new_generated_profession.append(prof)
+        
+        self.new_generated_height.append(str(random.randint(4, 6)) + " ft. " + str(random.randint(1, 11)) + " inches")
+        self.new_generated_weight.append(str(random.randint(80, 120)) + " lbs")
+            
+        self.new_generated_DOB.append(dob)
+        
+        salary= self.generate_salary(prof)
+        self.new_generated_salary.append(salary)
+        self.new_generated_tin_no.append(self.generate_tin_no(salary))
+        
+        school, result = self.generate_SSC(prof, age)
+        self.new_generated_school.append(school)
+        self.new_generated_SSC_gpa.append(result)
+        
+        college, result1 = self.generate_HSC(prof, age)
+        self.new_generated_college.append(college)
+        self.new_generated_HSC_gpa.append(result1)
+        
+        university, result2 = self.generate_UG(prof, age)
+        self.new_generated_ug.append(university)
+        self.new_generated_ug_cgpa.append(result2)
+       
+        university1, result3 = self.generate_Grad(prof, age)
+        self.new_generated_grad.append(university1)
+        self.new_generated_grad_cgpa.append(result3)
+        
+        result4 = self.generate_PhD(prof, age)
+        self.new_generated_phd.append(result4)
+            
+        self.new_generated_assets.append(self.generate_assets(salary))
+        self.new_generated_income_tax.append(self.generate_income_tax(salary))
+        self.new_generated_emails.append(self.generate_email(firstname, lastname))
+        self.new_generated_mobile_no.append(self.generate_phone_no())
+        
+        self.generate_permanent_present_address()
+        
+        fname, mname, lname = self.get_fathers_name(first_names, middlename, lastname, gender)
+        self.new_generated_fathers_first_name.append(fname)
+        self.new_generated_fathers_middle_name.append(mname)
+        self.new_generated_fathers_last_name.append(lname)
+        fname1, mname1, lname1 = self.get_mothers_name(first_names, last_names, middlename, gender)
+        self.new_generated_mothers_first_name.append(fname1)
+        self.new_generated_mothers_middle_name.append(mname1)
+        self.new_generated_mothers_last_name.append(lname1)
+        self.new_generated_place_of_birth.append(random.choice(self.districts[random.randint(1, 4)]))
+    
+        ec_fname = random.choice(first_names)
+        ec_lname = random.choice(last_names)
+        self.new_generated_ec_firstname.append(ec_fname)
+        self.new_generated_ec_middlename.append(middlename)
+        self.new_generated_ec_lastname.append(ec_lname)
+        self.new_generated_ec_mobile.append(self.generate_phone_no())
+        self.new_generated_ec_email.append(self.generate_email(ec_fname, ec_lname))
+        
+    def generate_salary(self, prof):
+        lower, upper = self.salary[prof]
+        return random.randint(lower, upper)
+        
+    def generate_passport_no(self):
+        pass_no = None
+        
+        if random.randint(1, 4) is not 4:
+            str1 = str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)) + \
+                   str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)) + \
+                   str(random.randint(0, 9))
+            str2 = random.choice(string.ascii_letters[0:4]).upper() + random.choice(string.ascii_letters).upper()    
+            pass_no = str2 + str1
+        
+        return pass_no
+        
+    def generate_SSC(self, prof, age):
+        school = None
+        result = ''
+        
+        if prof not in self.not_ssc and age >= 16:
+            school = random.choice(self.school_college) + " School"
+            if random.randint(1, 2) % 2 == 0:
+                result = str(5.00)
+            else:
+                result = str(random.randint(300, 500) / 100)
+            
+        return school, result
+    
+    def generate_HSC(self, prof, age):
+        school = None
+        result = ''
+        
+        if prof not in self.not_hsc and age >= 18:
+            school = random.choice(self.school_college) + " College"
+            if random.randint(1, 2) % 2 == 0:
+                result = str(5.00)
+            else:
+                result = str(random.randint(300, 500) / 100)
+            
+        return school, result
+    
+    def generate_UG(self, prof, age):
+        school = None
+        result = ''
+        
+        if prof not in self.not_ug and age >= 22:
+            school = random.choice(self.university)
+            result = str(random.randint(200, 400) / 100)
+            
+        return school, result
+    
+    def generate_Grad(self, prof, age):
+        school = None
+        result = ''
+        
+        if prof not in self.not_grad and age >= 24:
+            school = random.choice(self.university)
+            result = str(random.randint(200, 400) / 100)
+            
+        return school, result
+    
+    def generate_PhD(self, prof, age):
+        school = None
+        
+        if prof not in self.not_phd and age >= 28:
+            school = random.choice(self.university)
+            
+        return school
+        
+    def generate_email(self, firstname, lastname):
+        email = None
+        if random.randint(1, 10) % 2 == 0:
+           email = firstname.lower() + "." + lastname.lower() + self.email[random.randint(1, 3)]
+    
+        return email
     
     def get_fathers_name(self, firstnames, middlename, lastname, gender):
-        fathers_name = None
+        fname = None
+        mname = None
+        lname = None
         if gender is 'male':
-            fathers_name = random.choice(firstnames) + " " + middlename + " " + lastname
+            fname = random.choice(firstnames) 
+            mname = middlename 
+            lname = lastname
         else:
-            fathers_name = random.choice(self.new_generated_fathers_name)
+            fname = random.choice(self.new_generated_fathers_first_name)
+            mname = random.choice(self.new_generated_fathers_middle_name)
+            lname = random.choice(self.new_generated_fathers_last_name)
         
-        return fathers_name
+        return fname, mname, lname
         
-    def get_mothers_name(self, firstnames, lastnames, gender):
-        mothers_name = None
+    def get_mothers_name(self, firstnames, lastnames, middlename, gender):
+        fname = None
+        mname = None
+        lname = None
         if gender is 'female':
-            mothers_name = random.choice(firstnames) + " " + random.choice(lastnames)
+            fname = random.choice(firstnames) 
+            lname = random.choice(lastnames) 
+            mname = middlename
         else:
-            if len(self.new_generated_mothers_name) > 0 :
-                mothers_name = random.choice(self.new_generated_mothers_name)
+            if len(self.new_generated_mothers_first_name) > 0 and \
+                len(self.new_generated_mothers_middle_name) > 0 and \
+                len(self.new_generated_mothers_last_name) > 0 :
+                fname = random.choice(self.new_generated_mothers_first_name)
+                mname = random.choice(self.new_generated_mothers_middle_name)
+                lname = random.choice(self.new_generated_mothers_last_name)
             
-        return mothers_name
+        return fname, mname, lname
         
-    def generate_present_address(self):
-        house_no = random.randint(1, 70)
-        road_no = random.randint(1, 20)
-        ward_no = random.randint(1, 45)
-        div = random.randint(1, 7)
-        city = random.choice(self.districts[div])
-        thana = random.choice(self.thanas[self.divisions[div]])
-        dist = city
-        division = self.divisions[div]
+    def generate_tin_no(self, salary):
+        tin = None
+        if salary >= 25000:
+            tin = str(random.randint(1, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)) + \
+               str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)) + \
+               str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)) + \
+               str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)) 
         
-        return "House no. " + str(house_no) +  ", Road no. " + str(road_no) + ", Ward no. " + str(ward_no) + \
-                ", Thana: " + thana + ", City: " + city +", District: " + dist + ", Division: " + division + "."
+        return tin 
     
+    def generate_income_tax(self, income):
+        tax = 0
+        if income >= 25000:
+            tax = (income * 30) / 100
+            
+        return tax
+    
+    def generate_assets(self, income):
+        str1 = ""
+        flats = 0
+        cars = 0
+        plots = 0
+        
+        if income >= 35000:
+            flats += 1
+        if income >= 50000:
+            cars += 1
+        if income >= 75000:
+            flats += 1
+            plots += 1
+        if income >= 100000:
+            cars += 1
+        if income >= 200000:
+            flats += 1
+            plots += 1
+            cars += 1
+            
+        if cars > 0:
+            str1 += str(cars) + " car(s) "
+        if flats > 0:
+            str1 += str(flats) + " flat(s) "
+        if plots > 0:
+            str1 += str(plots) + " plots(s)"
+            
+        return str1
+    
+    def generate_permanent_present_address(self):
+        City = 0
+        Village = 1
+        city_or_village = random.randint(0, 1)
+        
+        if city_or_village is City:
+            div = random.randint(1, 7)
+            city = random.choice(self.districts[div])
+            self.new_generated_permanent_addr_house_no.append(str(random.randint(1, 70)))
+            self.new_generated_permanent_addr_street_no.append(str(random.randint(1, 20)))
+            self.new_generated_permanent_addr_word_no.append(str(random.randint(1, 70)))
+            self.new_generated_permanent_addr_village.append(' ')
+            self.new_generated_permanent_addr_thana.append(random.choice(self.thanas[self.divisions[div]]))
+            self.new_generated_permanent_addr_city.append(city)
+            self.new_generated_permanent_addr_district.append(city)
+            self.new_generated_permanent_addr_division.append(self.divisions[div])
+            
+            div = random.randint(1, 7)
+            city = random.choice(self.districts[div])
+            self.new_generated_present_addr_house_no.append(str(random.randint(1, 70)))
+            self.new_generated_present_addr_street_no.append(str(random.randint(1, 20)))
+            self.new_generated_present_addr_word_no.append(str(random.randint(1, 70)))
+            self.new_generated_present_addr_village.append(' ')
+            self.new_generated_present_addr_thana.append(random.choice(self.thanas[self.divisions[div]]))
+            self.new_generated_present_addr_city.append(city)
+            self.new_generated_present_addr_district.append(city)
+            self.new_generated_present_addr_division.append(self.divisions[div])
+            
+            div = random.randint(1, 7)
+            city = random.choice(self.districts[div])
+            self.new_generated_ec_permanent_addr_house_no.append(str(random.randint(1, 70)))
+            self.new_generated_ec_permanent_addr_street_no.append(str(random.randint(1, 20)))
+            self.new_generated_ec_permanent_addr_word_no.append(str(random.randint(1, 70)))
+            self.new_generated_ec_permanent_addr_village.append(' ')
+            self.new_generated_ec_permanent_addr_thana.append(random.choice(self.thanas[self.divisions[div]]))
+            self.new_generated_ec_permanent_addr_city.append(city)
+            self.new_generated_ec_permanent_addr_district.append(city)
+            self.new_generated_ec_permanent_addr_division.append(self.divisions[div])
+            
+            div = random.randint(1, 7)
+            city = random.choice(self.districts[div])
+            self.new_generated_ec_present_addr_house_no.append(str(random.randint(1, 70)))
+            self.new_generated_ec_present_addr_street_no.append(str(random.randint(1, 20)))
+            self.new_generated_ec_present_addr_word_no.append(str(random.randint(1, 70)))
+            self.new_generated_ec_present_addr_village.append(' ')
+            self.new_generated_ec_present_addr_thana.append(random.choice(self.thanas[self.divisions[div]]))
+            self.new_generated_ec_present_addr_city.append(city)
+            self.new_generated_ec_present_addr_district.append(city)
+            self.new_generated_ec_present_addr_division.append(self.divisions[div])
+            
+        if city_or_village is Village: 
+            div = random.randint(1, 7)
+            self.new_generated_permanent_addr_house_no.append(' ')
+            self.new_generated_permanent_addr_street_no.append(' ')
+            self.new_generated_permanent_addr_word_no.append(str(random.randint(1, 70)))
+            self.new_generated_permanent_addr_village.append(random.choice(self.villages[self.divisions[div]]))
+            self.new_generated_permanent_addr_thana.append(random.choice(self.thanas[self.divisions[div]]))
+            self.new_generated_permanent_addr_city.append(' ')
+            self.new_generated_permanent_addr_district.append(random.choice(self.districts[div]))
+            self.new_generated_permanent_addr_division.append(self.divisions[div])
+            
+            div = random.randint(1, 7)
+            self.new_generated_present_addr_house_no.append(' ')
+            self.new_generated_present_addr_street_no.append(' ')
+            self.new_generated_present_addr_word_no.append(str(random.randint(1, 70)))
+            self.new_generated_present_addr_village.append(random.choice(self.villages[self.divisions[div]]))
+            self.new_generated_present_addr_thana.append(random.choice(self.thanas[self.divisions[div]]))
+            self.new_generated_present_addr_city.append(' ')
+            self.new_generated_present_addr_district.append(random.choice(self.districts[div]))
+            self.new_generated_present_addr_division.append(self.divisions[div])
+            
+            div = random.randint(1, 7)
+            self.new_generated_ec_permanent_addr_house_no.append(' ')
+            self.new_generated_ec_permanent_addr_street_no.append(' ')
+            self.new_generated_ec_permanent_addr_word_no.append(str(random.randint(1, 70)))
+            self.new_generated_ec_permanent_addr_village.append(random.choice(self.villages[self.divisions[div]]))
+            self.new_generated_ec_permanent_addr_thana.append(random.choice(self.thanas[self.divisions[div]]))
+            self.new_generated_ec_permanent_addr_city.append(' ')
+            self.new_generated_ec_permanent_addr_district.append(random.choice(self.districts[div]))
+            self.new_generated_ec_permanent_addr_division.append(self.divisions[div])
+            
+            div = random.randint(1, 7)
+            self.new_generated_ec_present_addr_house_no.append(' ')
+            self.new_generated_ec_present_addr_street_no.append(' ')
+            self.new_generated_ec_present_addr_word_no.append(str(random.randint(1, 70)))
+            self.new_generated_ec_present_addr_village.append(random.choice(self.villages[self.divisions[div]]))
+            self.new_generated_ec_present_addr_thana.append(random.choice(self.thanas[self.divisions[div]]))
+            self.new_generated_ec_present_addr_city.append(' ')
+            self.new_generated_ec_present_addr_district.append(random.choice(self.districts[div]))
+            self.new_generated_ec_present_addr_division.append(self.divisions[div])
+        
     def generate_permanent_address(self):
         ward_no = random.randint(1, 45)
         div = random.randint(1, 7)
@@ -228,7 +743,9 @@ class Data_Generator():
                 ", Thana: " + thana + ", District: " + dist + ", Division: " + division + "."
                 
     def generate_DOB(self):
-        return str(random.randint(1, 28)) + "/" + str(random.randint(1, 12)) + "/" + str(random.randint(1950, 1999))
+        year = random.randint(1950, 2010)
+        age = 2019 - year
+        return str(random.randint(1, 28)) + "/" + str(random.randint(1, 12)) + "/" + str(year), age
 
     def generate_phone_no(self):
         str1 = str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)) + \
