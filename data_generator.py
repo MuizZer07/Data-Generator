@@ -304,78 +304,78 @@ class Data_Generator():
             self.new_generated_ec_mobile.append(self.generate_phone_no())
             self.new_generated_ec_email.append(self.generate_email(ec_fname, ec_lname))
 
-    def get_data(self):
-        Data = {'First name': self.new_generated_first_names,
-                'Middle name': self.new_generated_middle_names,
-                'Last name': self.new_generated_last_names,
-                'NID': self.new_generated_NID,
-                'Fathers First Name': self.new_generated_fathers_first_name,
-                'Fathers Middle Name': self.new_generated_fathers_middle_name,
-                'Fathers Last Name': self.new_generated_fathers_last_name,
-                'Mothers First Name': self.new_generated_mothers_first_name,
-                'Mothers Middle Name': self.new_generated_mothers_middle_name,
-                'Mothers Last Name': self.new_generated_mothers_last_name,
-                'Sex': self.new_generated_sex,
-                'Religion': self.new_generated_religion,
-                'Marital Status': self.new_generated_marital_status,
-                'Height': self.new_generated_height,
-                'Weight': self.new_generated_weight,
-                'Profession': self.new_generated_profession,
-                'Income': self.new_generated_salary,
-                'Income Tax' : self.new_generated_income_tax,
-                'TIN No': self.new_generated_tin_no,
-                'Assets': self.new_generated_assets,
-                'Date of Birth': self.new_generated_DOB,
-                'Passport No': self.new_generated_passport_no,
-                'Email Address': self.new_generated_emails,
-                'Mobile No': self.new_generated_mobile_no,
-                'Prsnt_addr_house_no': self.new_generated_present_addr_house_no,
-                'Prsnt_addr_street_no': self.new_generated_present_addr_street_no,
-                'Prsnt_addr_word_no': self.new_generated_present_addr_word_no,
-                'Prsnt_addr_village': self.new_generated_present_addr_village,
-                'Prsnt_addr_thana': self.new_generated_present_addr_thana,
-                'Prsnt_addr_city': self.new_generated_present_addr_city,
-                'Prsnt_addr_district': self.new_generated_present_addr_district,
-                'Prsnt_addr_division': self.new_generated_present_addr_division,                
-                'Prmntn_addr_house_no': self.new_generated_permanent_addr_house_no,
-                'Prmntn_addr_street_no': self.new_generated_permanent_addr_street_no,
-                'Prmntn_addr_word_no': self.new_generated_permanent_addr_word_no,
-                'Prmntn_addr_village': self.new_generated_permanent_addr_village,
-                'Prmntn_addr_thana': self.new_generated_permanent_addr_thana,
-                'Prmntn_addr_city': self.new_generated_permanent_addr_city,
-                'Prmntn_addr_district': self.new_generated_permanent_addr_district,
-                'Prmntn_addr_division': self.new_generated_permanent_addr_division,
-                'SSC Passed From': self.new_generated_school,
-                'SSC Result': self.new_generated_SSC_gpa,
-                'HSC Passed From': self.new_generated_college,
-                'HSC Result': self.new_generated_HSC_gpa,
-                'Graduated From': self.new_generated_ug,
-                'Undergrad Result': self.new_generated_ug_cgpa,
-                'Post Graduated From': self.new_generated_grad,
-                'Postgrad Result': self.new_generated_grad_cgpa,
-                'Doctorate From': self.new_generated_phd,
-                'Place of Birth': self.new_generated_place_of_birth,
-                'EC First Name': self.new_generated_ec_firstname,
-                'EC Middle Name': self.new_generated_ec_middlename,
-                'EC Last Name': self.new_generated_ec_lastname,
-                'EC_Prsnt_addr_house_no': self.new_generated_ec_present_addr_house_no,
-                'EC_Prsnt_addr_street_no': self.new_generated_ec_present_addr_street_no,
-                'EC_Prsnt_addr_word_no': self.new_generated_ec_present_addr_word_no,
-                'EC_Prsnt_addr_village': self.new_generated_ec_present_addr_village,
-                'EC_Prsnt_addr_thana': self.new_generated_ec_present_addr_thana,
-                'EC_Prsnt_addr_city': self.new_generated_ec_present_addr_city,
-                'EC_Prsnt_addr_district': self.new_generated_ec_present_addr_district,
-                'EC_Prsnt_addr_division': self.new_generated_ec_present_addr_division,                
-                'EC_Prmntn_addr_house_no': self.new_generated_ec_permanent_addr_house_no,
-                'EC_Prmntn_addr_street_no': self.new_generated_ec_permanent_addr_street_no,
-                'EC_Prmntn_addr_word_no': self.new_generated_ec_permanent_addr_word_no,
-                'EC_Prmntn_addr_village': self.new_generated_ec_permanent_addr_village,
-                'EC_Prmntn_addr_thana': self.new_generated_ec_permanent_addr_thana,
-                'EC_Prmntn_addr_city': self.new_generated_ec_permanent_addr_city,
-                'EC_Prmntn_addr_district': self.new_generated_ec_permanent_addr_district,
-                'EC_Prmntn_addr_division': self.new_generated_ec_permanent_addr_division,
-                'EC Mobile No': self.new_generated_ec_mobile,
-                'EC Email Address': self.new_generated_ec_email,
+    def get_data(self, limit):
+        Data = {'First name': self.new_generated_first_names[:limit],
+                'Middle name': self.new_generated_middle_names[:limit],
+                'Last name': self.new_generated_last_names[:limit],
+                'NID': self.new_generated_NID[:limit],
+                'Fathers First Name': self.new_generated_fathers_first_name[:limit],
+                'Fathers Middle Name': self.new_generated_fathers_middle_name[:limit],
+                'Fathers Last Name': self.new_generated_fathers_last_name[:limit],
+                'Mothers First Name': self.new_generated_mothers_first_name[:limit],
+                'Mothers Middle Name': self.new_generated_mothers_middle_name[:limit],
+                'Mothers Last Name': self.new_generated_mothers_last_name[:limit],
+                'Sex': self.new_generated_sex[:limit],
+                'Religion': self.new_generated_religion[:limit],
+                'Marital Status': self.new_generated_marital_status[:limit],
+                'Height': self.new_generated_height[:limit],
+                'Weight': self.new_generated_weight[:limit],
+                'Profession': self.new_generated_profession[:limit],
+                'Income': self.new_generated_salary[:limit],
+                'Income Tax' : self.new_generated_income_tax[:limit],
+                'TIN No': self.new_generated_tin_no[:limit],
+                'Assets': self.new_generated_assets[:limit],
+                'Date of Birth': self.new_generated_DOB[:limit],
+                'Passport No': self.new_generated_passport_no[:limit],
+                'Email Address': self.new_generated_emails[:limit],
+                'Mobile No': self.new_generated_mobile_no[:limit],
+                'Prsnt_addr_house_no': self.new_generated_present_addr_house_no[:limit],
+                'Prsnt_addr_street_no': self.new_generated_present_addr_street_no[:limit],
+                'Prsnt_addr_ward_no': self.new_generated_present_addr_word_no[:limit],
+                'Prsnt_addr_village': self.new_generated_present_addr_village[:limit],
+                'Prsnt_addr_thana': self.new_generated_present_addr_thana[:limit],
+                'Prsnt_addr_city': self.new_generated_present_addr_city[:limit],
+                'Prsnt_addr_district': self.new_generated_present_addr_district[:limit],
+                'Prsnt_addr_division': self.new_generated_present_addr_division[:limit],                
+                'Prmntn_addr_house_no': self.new_generated_permanent_addr_house_no[:limit],
+                'Prmntn_addr_street_no': self.new_generated_permanent_addr_street_no[:limit],
+                'Prmntn_addr_ward_no': self.new_generated_permanent_addr_word_no[:limit],
+                'Prmntn_addr_village': self.new_generated_permanent_addr_village[:limit],
+                'Prmntn_addr_thana': self.new_generated_permanent_addr_thana[:limit],
+                'Prmntn_addr_city': self.new_generated_permanent_addr_city[:limit],
+                'Prmntn_addr_district': self.new_generated_permanent_addr_district[:limit],
+                'Prmntn_addr_division': self.new_generated_permanent_addr_division[:limit],
+                'SSC Passed From': self.new_generated_school[:limit],
+                'SSC Result': self.new_generated_SSC_gpa[:limit],
+                'HSC Passed From': self.new_generated_college[:limit],
+                'HSC Result': self.new_generated_HSC_gpa[:limit],
+                'Graduated From': self.new_generated_ug[:limit],
+                'Undergrad Result': self.new_generated_ug_cgpa[:limit],
+                'Post Graduated From': self.new_generated_grad[:limit],
+                'Postgrad Result': self.new_generated_grad_cgpa[:limit],
+                'Doctorate From': self.new_generated_phd[:limit],
+                'Place of Birth': self.new_generated_place_of_birth[:limit],
+                'EC First Name': self.new_generated_ec_firstname[:limit],
+                'EC Middle Name': self.new_generated_ec_middlename[:limit],
+                'EC Last Name': self.new_generated_ec_lastname[:limit],
+                'EC_Prsnt_addr_house_no': self.new_generated_ec_present_addr_house_no[:limit],
+                'EC_Prsnt_addr_street_no': self.new_generated_ec_present_addr_street_no[:limit],
+                'EC_Prsnt_addr_ward_no': self.new_generated_ec_present_addr_word_no[:limit],
+                'EC_Prsnt_addr_village': self.new_generated_ec_present_addr_village[:limit],
+                'EC_Prsnt_addr_thana': self.new_generated_ec_present_addr_thana[:limit],
+                'EC_Prsnt_addr_city': self.new_generated_ec_present_addr_city[:limit],
+                'EC_Prsnt_addr_district': self.new_generated_ec_present_addr_district[:limit],
+                'EC_Prsnt_addr_division': self.new_generated_ec_present_addr_division[:limit],                
+                'EC_Prmntn_addr_house_no': self.new_generated_ec_permanent_addr_house_no[:limit],
+                'EC_Prmntn_addr_street_no': self.new_generated_ec_permanent_addr_street_no[:limit],
+                'EC_Prmntn_addr_ward_no': self.new_generated_ec_permanent_addr_word_no[:limit],
+                'EC_Prmntn_addr_village': self.new_generated_ec_permanent_addr_village[:limit],
+                'EC_Prmntn_addr_thana': self.new_generated_ec_permanent_addr_thana[:limit],
+                'EC_Prmntn_addr_city': self.new_generated_ec_permanent_addr_city[:limit],
+                'EC_Prmntn_addr_district': self.new_generated_ec_permanent_addr_district[:limit],
+                'EC_Prmntn_addr_division': self.new_generated_ec_permanent_addr_division[:limit],
+                'EC Mobile No': self.new_generated_ec_mobile[:limit],
+                'EC Email Address': self.new_generated_ec_email[:limit],
                 }
         
         columns = ['First name', 'Middle name', 'Last name', 'NID', 'Fathers First Name', \
@@ -383,19 +383,19 @@ class Data_Generator():
                    'Mothers Middle Name', 'Mothers Last Name', 'Sex', 'Religion', \
                    'Marital Status', 'Height', 'Weight', 'Profession', 'Income', \
                    'Income Tax', 'TIN No', 'Assets', 'Date of Birth', 'Passport No', 'Email Address',\
-                   'Mobile No', 'Prsnt_addr_house_no', 'Prsnt_addr_street_no', 'Prsnt_addr_word_no', \
+                   'Mobile No', 'Prsnt_addr_house_no', 'Prsnt_addr_street_no', 'Prsnt_addr_ward_no', \
                    'Prsnt_addr_village', 'Prsnt_addr_thana', 'Prsnt_addr_city', 'Prsnt_addr_district', \
                    'Prsnt_addr_division', 'Prmntn_addr_house_no', 'Prmntn_addr_street_no', \
-                   'Prmntn_addr_word_no', 'Prmntn_addr_village', 'Prmntn_addr_thana', \
+                   'Prmntn_addr_ward_no', 'Prmntn_addr_village', 'Prmntn_addr_thana', \
                    'Prmntn_addr_city', 'Prmntn_addr_district', 'Prmntn_addr_division', 'SSC Passed From',\
                    'SSC Result', 'HSC Passed From', 'HSC Result',  'Graduated From',\
                    'Undergrad Result', 'Post Graduated From', 'Postgrad Result',\
                    'Doctorate From',  'Place of Birth', 'EC First Name', 'EC Middle Name',\
                    'EC Last Name', 'EC_Prsnt_addr_house_no', 'EC_Prsnt_addr_street_no', \
-                   'EC_Prsnt_addr_word_no', 'EC_Prsnt_addr_village', 'EC_Prsnt_addr_thana',\
+                   'EC_Prsnt_addr_ward_no', 'EC_Prsnt_addr_village', 'EC_Prsnt_addr_thana',\
                    'EC_Prsnt_addr_city', 'Prsnt_addr_district','EC_Prsnt_addr_division', \
                     'EC_Prmntn_addr_house_no', 'EC_Prmntn_addr_street_no', \
-                   'EC_Prmntn_addr_word_no', 'EC_Prmntn_addr_village', 'EC_Prmntn_addr_thana', \
+                   'EC_Prmntn_addr_ward_no', 'EC_Prmntn_addr_village', 'EC_Prmntn_addr_thana', \
                    'EC_Prmntn_addr_city', 'EC_Prmntn_addr_district', 'EC_Prmntn_addr_division', \
                    'EC Mobile No', 'EC Email Address']
 
@@ -406,11 +406,11 @@ class Data_Generator():
             for lastname in last_names:
                 if middle_names != None:
                     for middlename in middle_names:
-                        for i in range(7):
+                        for i in range(2):
                             self.generate_single_profile(first_names, last_names, firstname, middlename, lastname, gender, religion)
 #                        
                 else:
-                    for i in range(7):
+                    for i in range(2):
                         self.generate_single_profile(first_names, last_names, firstname, None, lastname, gender, religion)
              
     def generate_single_profile(self, first_names, last_names, firstname, middlename, lastname, gender, religion):

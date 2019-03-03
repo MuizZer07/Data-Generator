@@ -28,6 +28,7 @@ class Data_Loader():
 
     def read_csvfile(self, filename):
         self.dataframe = pd.read_csv(filename)
+        self.dataframe = shuffle(self.dataframe)
         return self.dataframe
 
     def save_csvfile(self, filename, Data, Columns):
