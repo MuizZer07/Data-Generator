@@ -35,7 +35,7 @@ $ pip install -r requirements.txt
 $ python main.py
 ```
 
-It will take one input asking for how many rows to generate in the first line.
+It will take one input asking for how many rows to generate. e.g. 500000000 person's profile to generate.
 
 **Thank You**
 
