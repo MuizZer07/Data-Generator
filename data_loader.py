@@ -3,6 +3,10 @@ from sklearn.utils import shuffle
 
 class Data_Loader():
 
+    """
+    Loads csv file into a Pandas DataFrame by shuffling all rows.
+    Fragments names by poistioning, religion and gender.
+    """
 
     def __init__(self, Data=None):
         self.dataframe = Data
